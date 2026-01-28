@@ -1,12 +1,13 @@
 $ErrorActionPreference = "Stop"
 
 $RepoDir   = "C:\git\uback-exports"
-$SourceDir = "X:\ERP\U-BACKexportFiles"
+$SourceDir = "\\nogadc\noga\ERP\U-BACKexportFiles"
 $TargetDir = Join-Path $RepoDir "generated_txt"
 
-if (!(Test-Path $SourceDir)) {
-    throw "Source path not found: $SourceDir"
-}
+cmd /c "net use \\nogadc\noga /persistent:no" | Out-Null
+
+if (!(Test-Path $SourceDir)) { throw "SourceDir not found: $SourceDir" }
+
 
 Set-Location $RepoDir
 
